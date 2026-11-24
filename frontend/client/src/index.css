@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 45%),
+      radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.12) 0px, transparent 45%),
+      radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 45%),
+      radial-gradient(at 0% 100%, rgba(249, 115, 22, 0.1) 0px, transparent 45%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+/* ================================
+   1. NAVBAR & CARDS (WHITE THEME)
+   ================================ */
+header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.06);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(124, 58, 237, 0.25) !important;
+  box-shadow: 0 16px 36px -12px rgba(37, 99, 235, 0.14) !important;
+}
+
+/* KPI Cards Colorful Top Accents (Blue, Orange, Green, Violet) */
+section.grid > .glass-card:nth-child(1) {
+  border-top: 4px solid #2563eb !important; /* Blue */
+}
+section.grid > .glass-card:nth-child(2) {
+  border-top: 4px solid #f97316 !important; /* Orange */
+}
+section.grid > .glass-card:nth-child(3) {
+  border-top: 4px solid #16a34a !important; /* Green */
+}
+section.grid > .glass-card:nth-child(4) {
+  border-top: 4px solid #7c3aed !important; /* Violet */
+}
+
+/* ================================
+   2. INPUTS, SELECTS & TEXTAREAS
+   ================================ */
+.glass-input {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
+  transition: all 0.2s ease;
+}
+
+.glass-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.glass-input:hover {
+  border-color: #94a3b8 !important;
+}
+
+.glass-input:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.14) !important;
+  outline: none;
+}
+
+select.glass-input option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* ================================
+   3. READABLE DARK TEXT ON WHITE
+   ================================ */
+.text-white {
+  color: #0f172a !important;
+}
+
+.text-slate-100,
+.text-slate-200 {
+  color: #1e293b !important;
+}
+
+.text-slate-300 {
+  color: #334155 !important;
+}
+
+.text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Keep White Text Inside Colored Gradient Buttons & Brand Icons */
+button[class*="from-indigo-600"],
+button[class*="from-indigo-600"] *,
+div[class*="from-indigo-600"] * {
+  color: #ffffff !important;
+}
+
+/* ================================
+   4. VIBRANT COLOR BADGES & ALERTS
+   (Blue, Yellow, Orange, Green, Violet)
+   ================================ */
+/* Applied — Blue */
+.text-sky-400 {
+  color: #1d4ed8 !important;
+}
+.bg-sky-500\/15 {
+  background-color: #dbeafe !important;
+  border-color: #93c5fd !important;
+}
+
+/* Interviewing — Yellow / Orange */
+.text-amber-400 {
+  color: #c2410c !important;
+}
+.bg-amber-500\/15 {
+  background-color: #ffedd5 !important;
+  border-color: #fdba74 !important;
+}
+
+/* Follow-Up Alert Banner — Warm Yellow & Orange */
+.bg-amber-500\/10 {
+  background: linear-gradient(135deg, #fefce8 0%, #fff7ed 100%) !important;
+  border: 1.5px solid #facc15 !important;
+  box-shadow: 0 8px 20px -8px rgba(234, 179, 8, 0.25);
+}
+.bg-amber-500\/20 {
+  background-color: #fef08a !important;
+}
+.text-amber-300 {
+  color: #9a3412 !important;
+}
+.text-amber-200\/80 {
+  color: #b45309 !important;
+}
+
+/* Offer — Green */
+.text-emerald-400 {
+  color: #15803d !important;
+}
+.bg-emerald-500\/15 {
+  background-color: #dcfce7 !important;
+  border-color: #86efac !important;
+}
+
+/* Rejected — Violet / Rose */
+.text-rose-400 {
+  color: #7c3aed !important;
+}
+.bg-rose-500\/15 {
+  background-color: #ede9fe !important;
+  border-color: #c4b5fd !important;
+}
+
+/* Brand Logo Gradient (Blue -> Violet) */
+div[class*="from-indigo-600"] {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  box-shadow: 0 8px 18px -4px rgba(124, 58, 237, 0.35) !important;
+}
+
+/* ================================
+   5. BUTTONS & HOVER EFFECTS
+   ================================ */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Primary Action Buttons (Sign In, Get Started, Add Job, Save Changes) */
+button[class*="from-indigo-600"] {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
+  border: none !important;
+  box-shadow: 0 6px 16px -4px rgba(37, 99, 235, 0.4) !important;
+}
+
+button[class*="from-indigo-600"]:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(124, 58, 237, 0.48) !important;
+}
+
+/* Edit & Secondary Buttons */
+button.text-slate-300 {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+button.text-slate-300:hover:not(:disabled) {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+  transform: translateY(-1px);
+}
+
+/* Delete Button */
+button.text-rose-400 {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+  border: 1px solid #fed7aa !important;
+}
+
+button.text-rose-400:hover:not(:disabled) {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+  border-color: #ea580c !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -4px rgba(234, 88, 12, 0.4);
+}
+
+/* Logout & Close Icon Buttons */
+button.text-slate-400 {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+button.text-slate-400:hover:not(:disabled) {
+  background-color: #ede9fe !important;
+  color: #7c3aed !important;
+  border-color: #c4b5fd !important;
+  transform: translateY(-1px);
+}
+
+/* Links */
+a.text-indigo-400 {
+  color: #2563eb !important;
+}
+a.text-indigo-400:hover {
+  color: #7c3aed !important;
+  text-decoration: underline;
+}
+
+/* Divider Borders Inside Cards */
+.border-white\/8,
+.border-white\/5 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* ================================
+   6. LIGHT THEME SCROLLBAR
+   ================================ */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
