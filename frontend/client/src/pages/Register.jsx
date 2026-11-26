@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Briefcase, User, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  ArrowRight,
+  Loader2,
+  UserPlus,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -28,106 +38,159 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="flex flex-col items-center mb-8">
-          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 mb-4">
-            <Briefcase className="h-6 w-6 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            Create your workspace
+    <div className="min-h-screen bg-slate-50 flex flex-col">
+      {/* 1. Violet Hero Banner (Compact & Clean) */}
+      <section className="auth-hero-banner text-center py-7 md:py-9 px-4">
+        <div className="max-w-3xl mx-auto flex flex-col items-center">
+          {/* Banner Heading */}
+          <h1 className="text-2xl md:text-4xl font-black tracking-tight mb-2">
+            Join JobTrackr Community
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
-            Track applications, interviews, and follow-ups effortlessly
+
+          {/* Banner Subtitle */}
+          <p className="hero-subtitle text-xs md:text-sm font-normal max-w-xl mx-auto leading-relaxed">
+            Create your candidate account to organize applications, track
+            interview stages, and manage your career pipeline.
           </p>
         </div>
+      </section>
 
-        <div className="glass-card rounded-2xl p-8">
+      {/* 2. White Card (No Overlap, Positioned Cleanly Below) */}
+      <main className="py-8 md:py-10 px-4 flex justify-center flex-1">
+        <div className="w-full max-w-xl auth-card p-8 md:p-10 relative z-10 flex flex-col">
+          {/* Top Center Icon Badge */}
+          <div className="w-16 h-16 rounded-2xl bg-violet-50 border border-violet-100 flex items-center justify-center mx-auto mb-4 text-violet-600 shadow-xs">
+            <UserPlus className="w-8 h-8 text-violet-600" />
+          </div>
+
+          {/* Card Title & Subtitle */}
+          <h2 className="auth-card-title text-2xl font-black text-center tracking-tight">
+            Create Your Account
+          </h2>
+          <p className="auth-card-subtitle text-center text-xs md:text-sm font-medium mt-1 mb-6">
+            Fill in the details below to complete your registration
+          </p>
+
+          {/* Error Alert */}
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm">
+            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 text-sm font-medium text-center">
               {error}
             </div>
           )}
 
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Vivek Nagariya"
-                  className="glass-input w-full pl-10 pr-4 py-3 rounded-xl text-sm text-white placeholder:text-slate-500"
-                />
+            {/* 2-Column Grid for Name & Email on Desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Full Name Field */}
+              <div>
+                <label className="auth-field-label">
+                  <User className="w-4 h-4" />
+                  <span>Full Name</span>
+                </label>
+                <div className="auth-input-container">
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. Rahul Sharma"
+                    className="auth-input"
+                  />
+                </div>
+              </div>
+
+              {/* Email Address Field */}
+              <div>
+                <label className="auth-field-label">
+                  <Mail className="w-4 h-4" />
+                  <span>Email Address</span>
+                </label>
+                <div className="auth-input-container">
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="e.g. rahul@example.com"
+                    className="auth-input"
+                  />
+                </div>
               </div>
             </div>
 
+            {/* Password Field */}
             <div>
-              <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
-                Email Address
+              <label className="auth-field-label">
+                <Lock className="w-4 h-4" />
+                <span>Password</span>
               </label>
-              <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <div className="auth-input-container">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                 <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  className="glass-input w-full pl-10 pr-4 py-3 rounded-xl text-sm text-white placeholder:text-slate-500"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-slate-300 uppercase tracking-wider mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Min. 6 characters"
-                  className="glass-input w-full pl-10 pr-4 py-3 rounded-xl text-sm text-white placeholder:text-slate-500"
+                  placeholder="Create a strong password (min. 6 chars)"
+                  className="auth-input has-eye"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-violet-600 transition-colors p-1"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
+                </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-60"
-            >
-              {submitting ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <>
-                  Get Started <ArrowRight className="h-4 w-4" />
-                </>
-              )}
-            </button>
+            {/* Violet Submit Button with Shine Effect */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn-auth-submit"
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    <span>Creating Account...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Create Your Account</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+            </div>
           </form>
 
-          <p className="text-center text-sm text-slate-400 mt-6">
+          {/* Bottom Switch Link */}
+          <p className="text-center text-sm font-medium text-slate-500 mt-7">
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+              className="text-violet-600 font-bold hover:text-violet-700 hover:underline transition-colors ml-1"
             >
-              Sign in
+              Login to Account
             </Link>
           </p>
         </div>
-      </div>
+      </main>
+
+      {/* Simple Footer */}
+      <footer className="py-6 text-center text-xs text-slate-400 border-t border-slate-200/60 bg-white">
+        © 2026 JobTrackr. All rights reserved.
+      </footer>
     </div>
   );
 }

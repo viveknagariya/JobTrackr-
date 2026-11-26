@@ -30,17 +30,20 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const { data } = await API.post("/auth/login", { email, password });
     localStorage.setItem("token", data.token);
+    localStorage.removeItem("jobtrackr_notif_read");
     setUser(data);
   };
 
   const register = async (name, email, password) => {
     const { data } = await API.post("/auth/register", { name, email, password });
     localStorage.setItem("token", data.token);
+    localStorage.removeItem("jobtrackr_notif_read");
     setUser(data);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("jobtrackr_notif_read");
     setUser(null);
   };
 

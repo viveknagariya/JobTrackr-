@@ -34,12 +34,15 @@ export default function StatsCharts({ defaultStats }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Bar Chart: Category-wise Count */}
-      <div className="glass-card rounded-2xl p-6">
+      <div className="glass-card rounded-2xl p-6 chart-card-violet">
         <div className="mb-5">
-          <h3 className="text-base font-semibold text-white">
+          <h3
+            className="text-base font-bold tracking-tight chart-title-violet"
+            style={{ color: "#7c3aed" }}
+          >
             Category Breakdown (Bar Chart)
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-400 mt-0.5 font-medium">
             Total applications across each stage
           </p>
         </div>
@@ -72,12 +75,15 @@ export default function StatsCharts({ defaultStats }) {
       </div>
 
       {/* Pie / Donut Chart: Percentage Distribution */}
-      <div className="glass-card rounded-2xl p-6">
+      <div className="glass-card rounded-2xl p-6 chart-card-violet">
         <div className="mb-5">
-          <h3 className="text-base font-semibold text-white">
+          <h3
+            className="text-base font-bold tracking-tight chart-title-violet"
+            style={{ color: "#7c3aed" }}
+          >
             Status Distribution (Pie Chart)
           </h3>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-400 mt-0.5 font-medium">
             Share of each category in your job pipeline
           </p>
         </div>
